@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-    ArrowRight, Shield, Users, Zap, Globe, Code, 
+import {
+    ArrowRight, Shield, Users, Zap, Globe, Code,
     CheckCircle, Star, TrendingUp, Lock, Wallet,
     DollarSign, Cpu, BrainCircuit, Award, Target,
     BarChart3, Layers, Rocket, Network, Menu, X
 } from "lucide-react";
-
+import logo from '../../public/Logo.png';
 export default function Landing() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -45,7 +45,7 @@ export default function Landing() {
             }
         `;
         document.head.appendChild(style);
-        
+
         // Clean up function
         return () => {
             document.head.removeChild(style);
@@ -57,7 +57,7 @@ export default function Landing() {
             {/* Enhanced Grid Background with Animation */}
             <div className="absolute inset-0">
                 {/* Primary animated grid */}
-                <div 
+                <div
                     className="absolute inset-0 opacity-20"
                     style={{
                         backgroundImage: `
@@ -68,9 +68,9 @@ export default function Landing() {
                         animation: 'gridMove 30s linear infinite'
                     }}
                 />
-                
+
                 {/* Secondary smaller grid */}
-                <div 
+                <div
                     className="absolute inset-0 opacity-10"
                     style={{
                         backgroundImage: `
@@ -81,9 +81,9 @@ export default function Landing() {
                         animation: 'gridMove 20s linear infinite reverse'
                     }}
                 />
-                
+
                 {/* Larger accent grid */}
-                <div 
+                <div
                     className="absolute inset-0 opacity-5"
                     style={{
                         backgroundImage: `
@@ -94,11 +94,11 @@ export default function Landing() {
                         animation: 'gridPulse 40s ease-in-out infinite'
                     }}
                 />
-                
+
                 {/* Gradient overlays */}
                 <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900" />
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-blue-900/10 to-pink-900/10" />
-                
+
                 {/* Grid intersection highlights */}
                 {[...Array(15)].map((_, i) => (
                     <div
@@ -114,7 +114,7 @@ export default function Landing() {
                         }}
                     />
                 ))}
-                
+
                 {/* Glowing orbs */}
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse" />
                 <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
@@ -124,18 +124,12 @@ export default function Landing() {
             <header className="relative z-50 bg-slate-900/90 backdrop-blur-xl border-b border-slate-800/50">
                 <div className="max-w-7xl mx-auto px-6 py-4">
                     <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg rounded-xl shadow-lg">
-                                ∞
-                            </div>
-                            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                ICPWork
-                            </span>
-                        </div>
-                        
+                        <img src={logo} alt="Logo" className="w-10 h-10 object-contain scale-150" />
+
+
                         <nav className="hidden md:flex items-center space-x-8">
                             {navLinks.map((item) => (
-                                <a 
+                                <a
                                     key={item.title}
                                     href={item.href}
                                     className="relative text-gray-300 hover:text-white transition-all duration-300 group"
@@ -145,16 +139,16 @@ export default function Landing() {
                                 </a>
                             ))}
                         </nav>
-                        
-                            <Button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                        <Link to='/' className="hidden md:block" >
+
+                        <Button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                            <Link to='/' className="hidden md:block" >
                                 Launch App
-                        </Link>
-                            </Button>
+                            </Link>
+                        </Button>
 
                         {/* Mobile menu button */}
                         <div className="md:hidden">
-                             <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)} className="text-gray-300 hover:text-white">
+                            <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(true)} className="text-gray-300 hover:text-white">
                                 <Menu className="w-6 h-6" />
                             </Button>
                         </div>
@@ -162,8 +156,8 @@ export default function Landing() {
                 </div>
             </header>
 
-             {/* Mobile Menu */}
-             <AnimatePresence>
+            {/* Mobile Menu */}
+            <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -172,7 +166,7 @@ export default function Landing() {
                         className="fixed inset-0 z-50 bg-slate-900/95 backdrop-blur-xl md:hidden"
                         onClick={() => setMobileMenuOpen(false)}
                     >
-                         <motion.div
+                        <motion.div
                             initial={{ y: "-100%" }}
                             animate={{ y: 0 }}
                             exit={{ y: "-100%" }}
@@ -181,9 +175,11 @@ export default function Landing() {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex items-center justify-between mb-8">
-                               <div className="flex items-center space-x-3">
-                                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg rounded-xl shadow-lg">∞</div>
-                               </div>
+                                <div className="flex items-center space-x-3">
+                                    <div className="w-14 h-14 flex items-center justify-center rounded-2xl shadow-lg bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500">
+                                        <img src="/logo.png" alt="ICPWork Logo" className="w-14 h-14" />
+                                    </div>
+                                </div>
                                 <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="-mr-2">
                                     <X className="w-6 h-6 text-gray-400" />
                                 </Button>
@@ -215,7 +211,7 @@ export default function Landing() {
                 <section className="min-h-screen flex items-center justify-center text-center px-6 relative">
                     {/* Grid overlay on hero */}
                     <div className="absolute inset-0 opacity-10">
-                        <div 
+                        <div
                             className="w-full h-full"
                             style={{
                                 backgroundImage: `
@@ -233,7 +229,7 @@ export default function Landing() {
                         transition={{ duration: 0.8 }}
                         className="max-w-5xl relative z-10"
                     >
-                        <motion.h1 
+                        <motion.h1
                             className="text-4xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-200 to-pink-200 bg-clip-text text-transparent leading-tight mb-8"
                             initial={{ scale: 0.9 }}
                             animate={{ scale: 1 }}
@@ -249,17 +245,17 @@ export default function Landing() {
                         >
                             Welcome to ICP Work
                         </motion.div>
-                        <motion.p 
+                        <motion.p
                             className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.6 }}
                         >
-                            A global, trustless, and efficient freelance marketplace built on the Internet Computer Protocol. 
+                            A global, trustless, and efficient freelance marketplace built on the Internet Computer Protocol.
                             Say goodbye to high fees, payment delays, and centralized control. Say hello to the new era of work.
                         </motion.p>
-                        
-                        <motion.div 
+
+                        <motion.div
                             className="flex flex-col sm:flex-row items-center justify-center gap-6"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -278,7 +274,7 @@ export default function Landing() {
                     </motion.div>
 
                     {/* Scroll Indicator */}
-                    <motion.div 
+                    <motion.div
                         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
                         animate={{ y: [0, 10, 0] }}
                         transition={{ duration: 2, repeat: Infinity }}
@@ -346,7 +342,7 @@ export default function Landing() {
                                 >
                                     {/* Grid border effect */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-pink-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300" />
-                                    
+
                                     <div className="relative bg-slate-800/50 backdrop-blur-xl border border-slate-700/50 p-8 rounded-2xl hover:border-slate-600 transition-all duration-300">
                                         <div className={`w-16 h-16 bg-gradient-to-r ${feature.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
                                             <feature.icon className="w-8 h-8 text-white" />
@@ -509,9 +505,9 @@ export default function Landing() {
                 <div className="max-w-7xl mx-auto">
                     <div className="flex flex-col md:flex-row items-center justify-between">
                         <div className="flex items-center space-x-3 mb-8 md:mb-0">
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold text-lg rounded-xl">
-                                ∞
-                            </div>
+                            {/* <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500"> */}
+                            <img src="/logo.png" alt="ICPWork Logo" className="w-16 h-16" />
+                            {/* </div> */}
                             <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                                 ICPWork
                             </span>
